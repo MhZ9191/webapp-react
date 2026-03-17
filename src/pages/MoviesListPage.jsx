@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Card from "../components/Card";
 
 export default function MovieslLisPage() {
   const [movies, setMovies] = useState([]);
@@ -7,6 +8,7 @@ export default function MovieslLisPage() {
   const fetchMovies = () => {
     axios.get("http://localhost:3000/movies").then((res) => {
       setMovies(res.data.results);
+      console.log(res.data.results);
     });
   };
 
@@ -17,7 +19,7 @@ export default function MovieslLisPage() {
       <h2>List</h2>
       <div>
         {movies.map((el) => {
-          return <p key={el.id}>{el.title}</p>;
+          return <Card key={el.id} element={el} />;
         })}
       </div>
     </>
