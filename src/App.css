@@ -56,10 +56,12 @@
   gap: 20px;
 }
 
-.card {
+.div-main-card {
+  text-decoration: none;
   width: calc(100% / 3 - (20px * 2 / 3));
   border: 2px black solid;
   padding: 10px;
+  color: black;
 }
 
 .card img {
