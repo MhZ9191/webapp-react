@@ -1,7 +1,11 @@
 export default function HomePage() {
   return (
     <>
-      <h2>My Home Page</h2>
+      <main>
+        <section className="sec-main-home">
+          <div></div>
+        </section>
+      </main>
     </>
   );
 }

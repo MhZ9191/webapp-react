@@ -8,20 +8,20 @@ export default function MovieslLisPage() {
   const fetchMovies = () => {
     axios.get("http://localhost:3000/movies").then((res) => {
       setMovies(res.data.results);
-      console.log(res.data.results);
     });
   };
 
   useEffect(fetchMovies, []);
 
   return (
-    <>
-      <h2>List</h2>
-      <div>
-        {movies.map((el) => {
-          return <Card key={el.id} element={el} />;
-        })}
-      </div>
-    </>
+    <main>
+      <section className="sec-main-list">
+        <div className="div-main-list">
+          {movies.map((el) => {
+            return <Card key={el.id} element={el} />;
+          })}
+        </div>
+      </section>
+    </main>
   );
 }
