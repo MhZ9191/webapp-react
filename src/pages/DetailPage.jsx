@@ -51,7 +51,7 @@ export default function DetailPage() {
 }
 
 function createStar(vote, maxVote) {
-  let test = [];
+  const test = [];
 
   for (let i = 1; i <= maxVote; i++) {
     test[i - 1] = i <= vote ? <span>&#x2605;</span> : <span>&#x2606;</span>;
