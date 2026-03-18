@@ -58,7 +58,7 @@
 
 .div-main-card {
   text-decoration: none;
-  width: calc(100% / 3 - (20px * 2 / 3));
+  width: 100%;
   color: black;
   background-color: antiquewhite;
   border-radius: 16px;
@@ -79,12 +79,60 @@
   height: 200px;
 }
 
-.card-image {
-  height: 400px;
-}
-
 .card-image img {
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  aspect-ratio: 3/5;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.main-sec-detail {
+  padding: 20px;
+}
+
+.main-div-detail {
+  width: 60vw;
+  margin: 0 auto;
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+}
+
+.main-div-detail div {
+  width: calc(100% / 2 - (30px * 1 / 2));
+}
+
+.div-image-detail img {
+  object-fit: cover;
+  width: 100%;
+  aspect-ratio: 3/5;
+}
+
+.div-reviews {
+  display: flex;
+  width: 60vw;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.div-reviews div:first-child {
+  width: 50px;
+  text-overflow: ellipsis;
+  text-wrap: nowrap;
+}
+
+.div-reviews div:nth-child(2) {
+  flex-grow: 1;
+}
+
+@media screen and (min-width: 678px) {
+  .div-main-card {
+    width: calc(100% / 2 - (20px * 1 / 2));
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .div-main-card {
+    width: calc(100% / 3 - (20px * 2 / 3));
+  }
 }
