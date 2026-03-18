@@ -46,7 +46,7 @@ export default function DetailPage() {
           {detail.reviews &&
             detail.reviews.map((el) => {
               return (
-                <div className="div-reviews">
+                <div key={el.id} className="div-reviews">
                   <div>{el.name}</div>
                   <div>{el.text}</div>
                   <div>{createStar(el.vote, 5)}</div>

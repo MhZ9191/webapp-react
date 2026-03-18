@@ -113,16 +113,34 @@
   width: 60vw;
   margin: 0 auto;
   gap: 20px;
+  border-bottom: 1px black solid;
+}
+
+.div-reviews:last-child {
+  border-bottom: none;
+}
+
+.div-reviews:first-child {
+  margin-top: 30px;
 }
 
 .div-reviews div:first-child {
   width: 50px;
   text-overflow: ellipsis;
   text-wrap: nowrap;
+  font-weight: bold;
 }
 
 .div-reviews div:nth-child(2) {
   flex-grow: 1;
+}
+
+.div-reviews div:last-child {
+  color: rgb(233, 16, 16);
+}
+
+.div-reviews div {
+  padding: 10px;
 }
 
 @media screen and (min-width: 678px) {
