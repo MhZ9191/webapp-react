@@ -15,6 +15,13 @@ export default function DetailPage() {
 
   useEffect(fetchDetail, []);
 
+  let avgVote = 0;
+  if (detail.reviews) {
+    avgVote =
+      detail.reviews.reduce((ac, ce) => ac + ce.vote, 0) /
+      detail.reviews.length;
+  }
+
   return (
     <main>
       <section className="main-sec-detail">
@@ -31,6 +38,8 @@ export default function DetailPage() {
             <span>{detail.abstract}</span>
             <h2>Release Year</h2>
             <span>{detail.release}</span>
+            <h2>Average</h2>
+            <span>{createStar(avgVote, 5)}</span>
           </div>
         </div>
         <div className="div-rev">
@@ -52,7 +61,6 @@ export default function DetailPage() {
 
 function createStar(vote, maxVote) {
   const test = [];
-
   for (let i = 1; i <= maxVote; i++) {
     test[i - 1] = i <= vote ? <span>&#x2605;</span> : <span>&#x2606;</span>;
   }
