@@ -30,7 +30,6 @@
 
 .nav-head div {
   padding: 10px;
-  border: 2px black;
   background-color: rgb(184, 250, 130);
   color: green;
   border-radius: 12px;
@@ -203,6 +202,72 @@
 
 .div-form fieldset {
   padding: 20px;
+  border-radius: 12px;
+  border: 2px solid black;
+}
+
+.form-submit {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.form-submit div {
+  width: calc(100% / 2 - (20px * 1 / 2));
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.form-submit button {
+  width: calc(100% / 2 - (20px * 1 / 2) + 1px);
+  padding: 10px;
+  background-color: rgb(184, 250, 130);
+  color: green;
+  border-radius: 12px;
+  border: 2px green solid;
+  font-weight: bold;
+}
+
+.form-submit button:hover {
+  border: 2px solid rgb(184, 250, 130);
+  background-color: green;
+  color: rgb(184, 250, 130);
+  box-shadow: 5px 5px 10px green;
+  cursor: pointer;
+}
+
+.form-submit input {
+  padding: 5px;
+  border-radius: 8px;
+  outline: none;
+}
+
+.form-submit input:focus {
+  border: 2px green solid;
+  box-shadow: 2px 2px 10px green;
+}
+
+.form-submit label {
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.form-submit label:hover {
+  cursor: pointer;
+}
+
+.form-submit textarea {
+  border-radius: 8px;
+  outline: none;
+  padding: 5px;
+}
+
+.form-submit textarea:focus {
+  border: 2px green solid;
+  box-shadow: 2px 2px 10px green;
 }
 
 @media screen and (min-width: 678px) {
