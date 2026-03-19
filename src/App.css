@@ -196,6 +196,15 @@
   margin: 20px auto;
 }
 
+.div-form legend {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.div-form fieldset {
+  padding: 20px;
+}
+
 @media screen and (min-width: 678px) {
   .div-main-card {
     width: calc(100% / 2 - (20px * 1 / 2));

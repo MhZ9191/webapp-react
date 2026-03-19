@@ -1,32 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import FormReviews from "../components/FormReviews";
 
 export default function DetailPage() {
   const { id } = useParams();
   const [detail, setDetail] = useState({});
-
-  const initialForm = {
-    name: "",
-    text: "",
-    vote: "",
-  };
-
-  const [newReviews, setNewReviews] = useState(initialForm);
-  const updateRev = (e) => {
-    const { name, value } = e.target;
-    setNewReviews({ ...newReviews, [name]: value });
-  };
-
-  const submitForm = (e) => {
-    e.preventDefault();
-    axios
-      .post(`http://localhost:3000/movies/${id}/new`, newReviews)
-      .then((res) => {
-        fetchDetail();
-        setNewReviews({ ...initialForm });
-      });
-  };
 
   const fetchDetail = () => {
     axios.get("http://localhost:3000/movies/" + id).then((res) => {
@@ -85,39 +64,7 @@ export default function DetailPage() {
               );
             })}
         </div>
-        <div className="div-form">
-          <fieldset>
-            <legend>Add New Reviews</legend>
-            <form onSubmit={submitForm}>
-              <label htmlFor="name-user">Name</label>
-              <input
-                type="text"
-                name="name"
-                id="name-user"
-                onChange={updateRev}
-                value={newReviews.name}
-              />
-              <label htmlFor="textarea-form">Text</label>
-              <textarea
-                name="text"
-                id="textarea-form"
-                onChange={updateRev}
-                value={newReviews.text}
-              ></textarea>
-              <label htmlFor="vote-form">Vote</label>
-              <input
-                type="number"
-                name="vote"
-                value={newReviews.vote}
-                onChange={updateRev}
-                min="1"
-                max="5"
-                id="vote-form"
-              />
-              <button>Send</button>
-            </form>
-          </fieldset>
-        </div>
+        <FormReviews fetch={fetchDetail} movie_id={id} />
       </section>
     </main>
   );
