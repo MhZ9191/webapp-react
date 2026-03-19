@@ -29,17 +29,27 @@ export default function DetailPage() {
           <div className="div-image-detail">
             <img src={detail.image} alt={detail.title} />
           </div>
-          <div>
-            <h2>Title</h2>
-            <span>{detail.title}</span>
-            <h2>Genre</h2>
-            <span>{detail.genre}</span>
-            <h2>Abstract</h2>
-            <span>{detail.abstract}</span>
-            <h2>Release Year</h2>
-            <span>{detail.release}</span>
-            <h2>Average</h2>
-            <span>{createStar(avgVote, 5)}</span>
+          <div className="detail-info">
+            <div>
+              <h2>Title</h2>
+              <span>{detail.title}</span>
+            </div>
+            <div>
+              <h2>Genre</h2>
+              <span>{detail.genre}</span>
+            </div>
+            <div>
+              <h2>Abstract</h2>
+              <span>{detail.abstract}</span>
+            </div>
+            <div>
+              <h2>Release Year</h2>
+              <span>{detail.release}</span>
+            </div>
+            <div>
+              <h2>Average</h2>
+              <span className="avg-average">{createStar(avgVote, 5)}</span>
+            </div>
           </div>
         </div>
         <div className="div-rev">
