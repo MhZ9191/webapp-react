@@ -16,6 +16,11 @@ export default function FormReviews({ movie_id, fetch }) {
 
   const submitForm = (e) => {
     e.preventDefault();
+    const { name, text, vote } = newReviews;
+    if (!name || !text || !vote) {
+      alert("Compila tutti i campi");
+      return;
+    }
     axios
       .post(`http://localhost:3000/movies/${movie_id}/new`, newReviews)
       .then((res) => {
