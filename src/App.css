@@ -191,6 +191,11 @@
   width: 100%;
 }
 
+.div-form {
+  width: 60vw;
+  margin: 20px auto;
+}
+
 @media screen and (min-width: 678px) {
   .div-main-card {
     width: calc(100% / 2 - (20px * 1 / 2));

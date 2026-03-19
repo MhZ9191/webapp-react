@@ -4,8 +4,29 @@ import { useParams } from "react-router-dom";
 
 export default function DetailPage() {
   const { id } = useParams();
-
   const [detail, setDetail] = useState({});
+
+  const initialForm = {
+    name: "",
+    text: "",
+    vote: "",
+  };
+
+  const [newReviews, setNewReviews] = useState(initialForm);
+  const updateRev = (e) => {
+    const { name, value } = e.target;
+    setNewReviews({ ...newReviews, [name]: value });
+  };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    axios
+      .post(`http://localhost:3000/movies/${id}/new`, newReviews)
+      .then((res) => {
+        fetchDetail();
+        setNewReviews({ ...initialForm });
+      });
+  };
 
   const fetchDetail = () => {
     axios.get("http://localhost:3000/movies/" + id).then((res) => {
@@ -18,7 +39,7 @@ export default function DetailPage() {
   let avgVote = 0;
   if (detail.reviews) {
     avgVote =
-      detail.reviews.reduce((ac, ce) => ac + ce.vote, 0) /
+      detail.reviews.reduce((ac, ce) => ac + Number(ce.vote), 0) /
       detail.reviews.length;
   }
 
@@ -56,13 +77,46 @@ export default function DetailPage() {
           {detail.reviews &&
             detail.reviews.map((el) => {
               return (
-                <div key={el.id} className="div-reviews">
+                <div key={el.rid} className="div-reviews">
                   <div>{el.name}</div>
                   <div>{el.text}</div>
                   <div>{createStar(el.vote, 5)}</div>
                 </div>
               );
             })}
+        </div>
+        <div className="div-form">
+          <fieldset>
+            <legend>Add New Reviews</legend>
+            <form onSubmit={submitForm}>
+              <label htmlFor="name-user">Name</label>
+              <input
+                type="text"
+                name="name"
+                id="name-user"
+                onChange={updateRev}
+                value={newReviews.name}
+              />
+              <label htmlFor="textarea-form">Text</label>
+              <textarea
+                name="text"
+                id="textarea-form"
+                onChange={updateRev}
+                value={newReviews.text}
+              ></textarea>
+              <label htmlFor="vote-form">Vote</label>
+              <input
+                type="number"
+                name="vote"
+                value={newReviews.vote}
+                onChange={updateRev}
+                min="1"
+                max="5"
+                id="vote-form"
+              />
+              <button>Send</button>
+            </form>
+          </fieldset>
         </div>
       </section>
     </main>
@@ -72,7 +126,8 @@ export default function DetailPage() {
 function createStar(vote, maxVote) {
   const test = [];
   for (let i = 1; i <= maxVote; i++) {
-    test[i - 1] = i <= vote ? <span>&#x2605;</span> : <span>&#x2606;</span>;
+    test[i - 1] =
+      i <= vote ? <span key={i}>&#x2605;</span> : <span key={i}>&#x2606;</span>;
   }
   return test;
 }
