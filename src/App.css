@@ -270,6 +270,50 @@
   box-shadow: 2px 2px 10px green;
 }
 
+.loader {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(200, 200, 200, 0.3);
+}
+
+.sub-load {
+  width: 60vw;
+  margin: 0 auto;
+  position: relative;
+  height: 100vh;
+}
+
+.sub-load > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: red;
+  animation: spin 1s infinite;
+  animation-direction: alternate;
+  border: 2px black solid;
+}
+
+.sub-load span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  font-weight: bold;
+}
+
+@keyframes spin {
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 100px);
+  }
+}
+
 @media screen and (min-width: 678px) {
   .div-main-card {
     width: calc(100% / 2 - (20px * 1 / 2));

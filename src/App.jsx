@@ -4,21 +4,23 @@ import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import MoviesListPage from "./pages/MoviesListPage";
 import DefaultLayout from "./layouts/DefaultLayout";
-
+import { Loader } from "./contexts/LoaderContext";
 export default function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route Component={DefaultLayout}>
-            <Route index Component={HomePage} />
-            <Route path="/movies">
-              <Route index element={<MoviesListPage />} />
-              <Route path=":id" element={<DetailPage />} />
+      <Loader>
+        <BrowserRouter>
+          <Routes>
+            <Route Component={DefaultLayout}>
+              <Route index Component={HomePage} />
+              <Route path="/movies">
+                <Route index element={<MoviesListPage />} />
+                <Route path=":id" element={<DetailPage />} />
+              </Route>
             </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </Loader>
     </>
   );
 }

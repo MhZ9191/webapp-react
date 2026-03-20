@@ -2,15 +2,23 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import FormReviews from "../components/FormReviews";
-
+import { useLoader } from "../contexts/LoaderContext";
 export default function DetailPage() {
+  const { startLoad, stopLoad } = useLoader();
+
   const { id } = useParams();
   const [detail, setDetail] = useState({});
 
   const fetchDetail = () => {
-    axios.get("http://localhost:3000/movies/" + id).then((res) => {
-      setDetail(res.data.result);
-    });
+    startLoad();
+    axios
+      .get("http://localhost:3000/movies/" + id)
+      .then((res) => {
+        setDetail(res.data.result);
+      })
+      .finally(() => {
+        stopLoad();
+      });
   };
 
   useEffect(fetchDetail, []);

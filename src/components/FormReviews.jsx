@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
-
+import { useLoader } from "../contexts/LoaderContext";
 export default function FormReviews({ movie_id, fetch }) {
+  const { startLoad, stopLoad } = useLoader();
+
   const initialForm = {
     name: "",
     text: "",
@@ -15,6 +17,7 @@ export default function FormReviews({ movie_id, fetch }) {
   };
 
   const submitForm = (e) => {
+    startLoad();
     e.preventDefault();
     const { name, text, vote } = newReviews;
     if (!name || !text || !vote) {
@@ -26,6 +29,9 @@ export default function FormReviews({ movie_id, fetch }) {
       .then((res) => {
         fetch();
         setNewReviews({ ...initialForm });
+      })
+      .finally(() => {
+        stopLoad();
       });
   };
 

@@ -1,14 +1,22 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
+import { useLoader } from "../contexts/LoaderContext";
 
 export default function MovieslLisPage() {
+  const { startLoad, stopLoad } = useLoader();
   const [movies, setMovies] = useState([]);
 
   const fetchMovies = () => {
-    axios.get("http://localhost:3000/movies").then((res) => {
-      setMovies(res.data.results);
-    });
+    startLoad();
+    axios
+      .get("http://localhost:3000/movies")
+      .then((res) => {
+        setMovies(res.data.results);
+      })
+      .finally(() => {
+        stopLoad();
+      });
   };
 
   useEffect(fetchMovies, []);

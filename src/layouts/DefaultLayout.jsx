@@ -1,7 +1,13 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
+import { useLoader } from "../contexts/LoaderContext";
+import Loader from "../components/Loader";
+
 export default function DefaultLayout() {
+  const { isLoad } = useLoader();
+
   return (
-    <>
+    <div>
+      {isLoad && <Loader />}
       <header>
         <section className="sec-head">
           <div className="div-head">
@@ -20,6 +26,6 @@ export default function DefaultLayout() {
         </section>
       </header>
       <Outlet />
-    </>
+    </div>
   );
 }
